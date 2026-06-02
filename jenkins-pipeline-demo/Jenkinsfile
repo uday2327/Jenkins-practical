@@ -1,0 +1,92 @@
+pipeline {
+
+    agent any
+
+    parameters {
+
+        string(
+            name: 'BRANCH_NAME',
+            defaultValue: 'main',
+            description: 'Git Branch Name'
+        )
+
+        string(
+            name: 'APP_VERSION',
+            defaultValue: '1.0',
+            description: 'Application Version'
+        )
+    }
+
+    environment {
+
+        BUILD_DIR = "build"
+
+        ARTIFACT_NAME = "demo-app.jar"
+    }
+
+    stages {
+
+        stage('Checkout') {
+
+            steps {
+
+                echo "Checking out branch: ${params.BRANCH_NAME}"
+
+            }
+        }
+
+        stage('Build') {
+
+            steps {
+
+                echo "Building Application"
+
+                sh 'mkdir -p build'
+
+                sh 'echo Build Successful > build/output.txt'
+            }
+        }
+
+        stage('Unit Testing') {
+
+            steps {
+
+                echo "Running Unit Tests"
+
+                sh 'echo Tests Passed'
+            }
+        }
+
+        stage('Code Quality Check') {
+
+            steps {
+
+                echo "Performing Code Quality Check"
+
+                sh 'echo Code Quality Passed'
+            }
+        }
+
+        stage('Artifact Packaging') {
+
+            steps {
+
+                echo "Packaging Artifact"
+
+                sh 'touch build/demo-app.jar'
+            }
+        }
+    }
+
+    post {
+
+        success {
+
+            echo 'Pipeline Executed Successfully'
+        }
+
+        failure {
+
+            echo 'Pipeline Failed'
+        }
+    }
