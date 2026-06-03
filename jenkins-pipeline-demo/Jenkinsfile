@@ -87,7 +87,7 @@ pipeline {
 
         failure {
 
-            echo 'Pipeline Failed fix it '
+            echo 'Pipeline Failed fix it  fast'
         }
     }
 }
