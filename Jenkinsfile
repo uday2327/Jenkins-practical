@@ -41,9 +41,9 @@ pipeline {
 
                 echo "Building Application"
 
-                sh 'mkdir -p build'
+                bat 'if not exist build mkdir build'
 
-                sh 'echo Build Successful > build/output.txt'
+                bat 'echo Build Successful > build\\output.txt'
             }
         }
 
@@ -53,7 +53,7 @@ pipeline {
 
                 echo "Running Unit Tests"
 
-                sh 'echo Tests Passed'
+                bat 'echo Tests Passed'
             }
         }
 
@@ -63,7 +63,7 @@ pipeline {
 
                 echo "Performing Code Quality Check"
 
-                sh 'echo Code Quality Passed'
+                bat 'echo Code Quality Passed'
             }
         }
 
@@ -73,7 +73,7 @@ pipeline {
 
                 echo "Packaging Artifact"
 
-                sh 'touch build/demo-app.jar'
+                bat 'type nul > build\\demo-app.jar'
             }
         }
     }
@@ -87,7 +87,7 @@ pipeline {
 
         failure {
 
-            echo 'Pipeline Failed fix it  fast'
+            echo 'Pipeline Failed'
         }
     }
 }
