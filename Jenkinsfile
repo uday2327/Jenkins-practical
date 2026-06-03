@@ -39,7 +39,7 @@ pipeline {
 
             steps {
 
-                echo "Building Application very imp"
+                echo "Building Application very imp fast fast fix it"
 
                 bat 'if not exist build mkdir build'
 
